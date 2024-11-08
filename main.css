@@ -105,12 +105,17 @@ footer {
 }
 
 .sitemap-links {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
 	padding: 0;
 	margin: 0;
-	list-style: none;
 	margin-bottom: 2rem;
+	list-style-position: inside;
 	text-transform: lowercase;
 }
+
 details summary::-webkit-details-marker {
 	display: none;
 }
@@ -124,10 +129,11 @@ canvas {
 	aspect-ratio: 16 / 9;
 }
 
-button {
+.chaos-mode {
 	appearance: none;
 	background-color: transparent;
 	border: 2px solid currentcolor;
+	transition: .1s ease-in-out;
 	border-radius: 3px;
 	padding: 8px;
 	font-weight: bold;
@@ -143,13 +149,14 @@ summary:hover {
 	text-decoration: underline;
 }
 
-button {
+.chaos-mode {
 	color: currentColor;
 }
 
-button:focus,
-button:hover {
-	box-shadow: 7px 4px 11px red, -7px -6px 11px olive;
+.chaos-mode:focus,
+.chaos-mode:hover {
+	transform: rotate(3deg);
+	box-shadow: 0px 4px 18px red, 0px -9px 28px olive;
 	outline: none;
 	cursor: pointer;
 	border-radius: 2px;
@@ -167,4 +174,12 @@ button:hover {
 
 .h-auto {
 	height: auto;
+}
+
+pre {
+	background-color: #e8b07fba;
+  border-radius: 4px;
+  padding: 12px;
+  box-sizing: border-box;
+  line-height: 1.4;
 }

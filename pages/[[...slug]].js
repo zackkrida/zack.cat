@@ -19,7 +19,7 @@ export default function Post({ post, posts }) {
 		const REGL = (await import('regl')).default
 		const {
 			Hydra,
-			generators: { src, osc, gradient, shape, voronoi, noise },
+			generators: { src, osc },
 		} = await import('hydra-ts')
 
 		const regl = REGL({ canvas: canvas.current })
@@ -63,7 +63,13 @@ export default function Post({ post, posts }) {
 							{/* <meta property="og:image" content={post.ogImage.url} /> */}
 						</Head>
 
-						{showMirror && <canvas className="aspect-4-3" ref={canvas} />}
+						{showMirror && (
+							<canvas
+								width={post.image.width}
+								height={post.image.height}
+								ref={canvas}
+							/>
+						)}
 
 						{post.image && !showMirror && (
 							<Image
@@ -92,8 +98,11 @@ export default function Post({ post, posts }) {
 						</Link>
 						<h1 className="split">
 							{post.title}
-							<button onClick={() => setShowMirror(!showMirror)}>
-								{!showMirror ? 'show the mirror' : 'hide the mirror'}
+							<button
+								className="chaos-mode"
+								onClick={() => setShowMirror(!showMirror)}
+							>
+								{!showMirror ? 'chaos mode' : 'return to stasis'}
 							</button>
 						</h1>
 						{/* <p>
@@ -109,11 +118,11 @@ export default function Post({ post, posts }) {
 
 						<footer>
 							<nav className="sitemap">
-								<details>
+								<details open>
 									<summary>
-										<h2>Sitemap (click to show links) ›</h2>
+										<h2>Sitemap ›</h2>
 									</summary>
-									<ul className="sitemap-links">
+									<ul className="sitemap-links small">
 										{posts
 											.filter((i) => i.slug !== 'index')
 											.map((i) => (
