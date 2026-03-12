@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import ChaosMode from '../components/ChaosMode.jsx'
+import Footer from '../components/Footer.astro'
 import { getCollection, render } from 'astro:content'
 
 export async function getStaticPaths() {
@@ -16,14 +17,6 @@ export async function getStaticPaths() {
 const { entry } = Astro.props
 const { Content } = await render(entry)
 const frontmatter = entry.data
-
-const allPosts = await getCollection('posts')
-const posts = allPosts
-	.filter((p) => p.id !== 'index')
-	.map((p) => ({
-		slug: p.id,
-		title: p.data.title,
-	}))
 ---
 
 <Layout title={`${frontmatter.title} ~ zack.cat`}>
@@ -31,22 +24,6 @@ const posts = allPosts
 		<a href="/" class="small">return home</a>
 		<ChaosMode client:load image={frontmatter.image} title={frontmatter.title} />
 		<Content />
-		<footer>
-			<nav class="sitemap">
-				<details open>
-					<summary><h2>Sitemap ›</h2></summary>
-					<ul class="sitemap-links small">
-						{posts.map((p) => <li><a href={`/${p.slug}`}>{p.title}</a></li>)}
-					</ul>
-				</details>
-			</nav>
-			<p class="small">
-				Content on this site is licensed under a{' '}
-				<a href="https://creativecommons.org/licenses/by/4.0/">
-					Creative Commons Attribution 4.0 International license
-				</a>
-				.
-			</p>
-		</footer>
+		<Footer />
 	</article>
 </Layout>
