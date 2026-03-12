@@ -17,7 +17,7 @@ img.no-effect {
 	mix-blend-mode: normal;
 }
 
-#__next {
+.page-wrapper {
 	box-sizing: border-box;
 	font-family: 'Inter', sans-serif;
 	line-height: 1.8;
@@ -26,7 +26,7 @@ img.no-effect {
 }
 
 @media screen and (min-width: 800px) {
-	#__next {
+	.page-wrapper {
 		padding: 0;
 		box-sizing: border-box;
 		margin: 6rem auto;

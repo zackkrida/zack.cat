@@ -12,4 +12,4 @@ my personal website.
 
 ## current build process
 
-the current build process is next.js. it grabs the markdown files at build time and generates static html pages.
+the current build process is astro + wrangler. seems fine!

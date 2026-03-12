@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro'
+import ChaosMode from '../components/ChaosMode.jsx'
+import { getCollection, render } from 'astro:content'
+
+const allPosts = await getCollection('posts')
+const indexEntry = allPosts.find((p) => p.id === 'index')
+const { Content } = await render(indexEntry)
+const frontmatter = indexEntry.data
+
+const posts = allPosts
+	.filter((p) => p.id !== 'index')
+	.map((p) => ({
+		slug: p.id,
+		title: p.data.title,
+	}))
+---
+
+<Layout title={`${frontmatter.title} ~ zack.cat`}>
+	<article class="content">
+		<a href="/" class="small" style="visibility: hidden">return home</a>
+		<ChaosMode client:load image={frontmatter.image} title={frontmatter.title} />
+		<Content />
+		<footer>
+			<nav class="sitemap">
+				<details open>
+					<summary><h2>Sitemap ›</h2></summary>
+					<ul class="sitemap-links small">
+						{posts.map((p) => <li><a href={`/${p.slug}`}>{p.title}</a></li>)}
+					</ul>
+				</details>
+			</nav>
+			<p class="small">
+				Content on this site is licensed under a{' '}
+				<a href="https://creativecommons.org/licenses/by/4.0/">
+					Creative Commons Attribution 4.0 International license
+				</a>
+				.
+			</p>
+		</footer>
+	</article>
+</Layout>
