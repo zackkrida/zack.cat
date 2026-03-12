@@ -1,23 +1,24 @@
 {
-  "name": "zack.cat",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "deploy": "wrangler pages deploy",
-    "generate-types": "wrangler types"
-  },
-  "dependencies": {
-    "@astrojs/cloudflare": "^13.1.1",
-    "@astrojs/react": "5.0.0",
-    "astro": "6.0.4",
-    "hydra-ts": "^1.0.0",
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0",
-    "rehype-external-links": "^3.0.0"
-  },
-  "devDependencies": {
-    "wrangler": "^4.72.0"
-  }
+	"name": "zack.cat",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"deploy:preview": "astro build && wrangler dev",
+		"deploy": "astro build && wrangler deploy",
+		"generate-types": "wrangler types"
+	},
+	"dependencies": {
+		"@astrojs/cloudflare": "^13.1.1",
+		"@astrojs/react": "5.0.0",
+		"astro": "6.0.4",
+		"hydra-ts": "^1.0.0",
+		"react": "^18.3.0",
+		"react-dom": "^18.3.0",
+		"rehype-external-links": "^3.0.0"
+	},
+	"devDependencies": {
+		"wrangler": "^4.72.0"
+	}
 }
